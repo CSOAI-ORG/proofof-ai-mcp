@@ -19,6 +19,22 @@ from typing import Optional
 
 from mcp.server.fastmcp import FastMCP
 
+# Path traversal protection
+BLOCKED_PATH_PATTERNS = ["/etc/", "/var/", "/proc/", "/sys/", "/dev/", ".."]
+
+
+def _validate_file_path(file_path: str) -> str | None:
+    """Validate file path against traversal attacks. Returns error message or None."""
+    import os
+    for pattern in BLOCKED_PATH_PATTERNS:
+        if pattern in file_path:
+            return f"Access denied: path contains blocked pattern '{pattern}'"
+    real = os.path.realpath(file_path)
+    if not os.path.isfile(real):
+        return f"File not found: {file_path}"
+    return None
+
+
 mcp = FastMCP(
     "proofof-ai",
     version="1.0.0",
@@ -377,6 +393,9 @@ def detect_deepfake_image(image_base64: Optional[str] = None, image_path: Option
         except Exception:
             return {"error": "Invalid base64 data"}
     elif image_path:
+        path_err = _validate_file_path(image_path)
+        if path_err:
+            return {"error": path_err}
         try:
             with open(image_path, "rb") as f:
                 data = f.read()
@@ -580,6 +599,9 @@ def check_provenance(file_path: Optional[str] = None, file_base64: Optional[str]
 
     data = None
     if file_path:
+        path_err = _validate_file_path(file_path)
+        if path_err:
+            return {"error": path_err}
         try:
             with open(file_path, "rb") as f:
                 data = f.read()
