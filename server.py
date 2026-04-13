@@ -552,8 +552,6 @@ def verify_certificate(certificate_id: str) -> dict:
     if not _check_rate_limit():
         return {"error": "Rate limit exceeded."}
 
-    _stats["certificates_verified"] += 1
-
     cert = _certificates.get(certificate_id)
     if not cert:
         return {
@@ -561,6 +559,8 @@ def verify_certificate(certificate_id: str) -> dict:
             "error": f"Certificate {certificate_id} not found. "
             "It may have expired or the ID may be incorrect.",
         }
+
+    _stats["certificates_verified"] += 1
 
     # Verify signature integrity
     expected_sig = hashlib.sha256(
