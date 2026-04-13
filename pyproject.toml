@@ -5,29 +5,25 @@ build-backend = "hatchling.build"
 [project]
 name = "proofof-ai-mcp"
 version = "1.0.0"
-description = "MCP server for digital content verification - AI detection, deepfake analysis, content certificates, C2PA provenance"
+description = "MEOK AI Labs — Built by MEOK AI Labs | https://proofof.ai"
+authors = [{name="MEOK AI Labs", email="nicholas@meok.ai"}]
 readme = "README.md"
-license = {file = "LICENSE"}
+license = {text = "MIT"}
 requires-python = ">=3.10"
-authors = [{name = "MEOK AI Labs", email = "nicholas@meok.ai"}]
-keywords = ["mcp", "ai-detection", "deepfake", "content-verification", "proofof", "c2pa", "meok"]
+keywords = ["mcp", "mcp-server", "model-context-protocol", "claude", "ai-tools", "meok-ai-labs", "proof-of-work", "verification", "authentication", "digital-proof", "attestation"]
 classifiers = [
     "Development Status :: 4 - Beta",
-    "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: 3.12",
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
-    "Topic :: Security",
+    "Intended Audience :: Developers",
 ]
-dependencies = ["mcp>=1.0.0"]
+dependencies = [
+    "mcp>=1.0.0",
+]
 
 [project.urls]
-Homepage = "https://proofof.ai"
+Homepage = "https://meok.ai"
 Repository = "https://github.com/CSOAI-ORG/proofof-ai-mcp"
-Documentation = "https://proofof.ai/docs"
-
-[project.scripts]
-proofof-ai-mcp = "server:mcp.run"
+Documentation = "https://meok.ai/docs/proofof-ai-mcp"
+"Bug Tracker" = "https://github.com/CSOAI-ORG/proofof-ai-mcp/issues"

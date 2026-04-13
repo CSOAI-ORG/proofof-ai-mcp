@@ -1,0 +1,10 @@
+name: proofof-ai-mcp
+description: "MEOK AI Labs — Built by MEOK AI Labs | https://proofof.ai"
+vendor: MEOK AI Labs
+homepage: https://meok.ai
+repository: https://github.com/CSOAI-ORG/proofof-ai-mcp
+license: MIT
+categories: [Security, Verification]
+tags: [proof-of-work, verification, authentication, digital-proof, attestation]
+runtime: python
+entrypoint: server.py

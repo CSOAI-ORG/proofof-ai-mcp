@@ -1,0 +1,25 @@
+{
+  "name": "proofof-ai-mcp",
+  "description": "MEOK AI Labs \u2014 Built by MEOK AI Labs | https://proofof.ai",
+  "vendor": "MEOK AI Labs",
+  "homepage": "https://meok.ai",
+  "repository": "https://github.com/CSOAI-ORG/proofof-ai-mcp",
+  "runtime": "python",
+  "entrypoint": "server.py",
+  "tools": [
+    "verify_text_origin",
+    "detect_deepfake_image",
+    "generate_content_certificate",
+    "verify_certificate",
+    "check_provenance",
+    "get_verification_stats"
+  ],
+  "categories": [
+    "Security",
+    "Verification"
+  ],
+  "pricing": {
+    "free": "50 calls/day",
+    "pro": "$9/mo"
+  }
+}
