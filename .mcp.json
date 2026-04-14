@@ -1,25 +1,108 @@
 {
   "name": "proofof-ai-mcp",
-  "description": "MEOK AI Labs \u2014 Built by MEOK AI Labs | https://proofof.ai",
-  "vendor": "MEOK AI Labs",
-  "homepage": "https://meok.ai",
-  "repository": "https://github.com/CSOAI-ORG/proofof-ai-mcp",
-  "runtime": "python",
-  "entrypoint": "server.py",
+  "description": "> **By [MEOK AI Labs](https://meok.ai)** \u2014 Sovereign AI tools for everyone.",
+  "version": "1.0.0",
   "tools": [
-    "verify_text_origin",
-    "detect_deepfake_image",
-    "generate_content_certificate",
-    "verify_certificate",
-    "check_provenance",
-    "get_verification_stats"
-  ],
-  "categories": [
-    "Security",
-    "Verification"
-  ],
-  "pricing": {
-    "free": "50 calls/day",
-    "pro": "$9/mo"
-  }
+    {
+      "name": "verify_text_origin",
+      "description": "Analyze text for AI-generated patterns.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "text"
+        ]
+      }
+    },
+    {
+      "name": "detect_deepfake_image",
+      "description": "Check image metadata for AI generation signatures.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "image_base64": {
+            "type": "string",
+            "nullable": true
+          },
+          "image_path": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": []
+      }
+    },
+    {
+      "name": "generate_content_certificate",
+      "description": "Create a signed verification certificate for content.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string"
+          },
+          "content_type": {
+            "type": "string"
+          },
+          "author": {
+            "type": "string",
+            "nullable": true
+          },
+          "purpose": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "content"
+        ]
+      }
+    },
+    {
+      "name": "verify_certificate",
+      "description": "Verify a previously generated content certificate by ID.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "certificate_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "certificate_id"
+        ]
+      }
+    },
+    {
+      "name": "check_provenance",
+      "description": "Check C2PA / Content Credentials metadata in files.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "file_path": {
+            "type": "string",
+            "nullable": true
+          },
+          "file_base64": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": []
+      }
+    },
+    {
+      "name": "get_verification_stats",
+      "description": "Return statistics on verifications performed by this server instance.",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    }
+  ]
 }

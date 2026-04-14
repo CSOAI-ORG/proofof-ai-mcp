@@ -271,7 +271,7 @@ def _parse_basic_image_metadata(data: bytes) -> dict:
 
 
 @mcp.tool()
-def verify_text_origin(text: str) -> dict:
+def verify_text_origin(text: str, api_key: str = "") -> dict:
     """Analyze text for AI-generated patterns.
 
     Examines perplexity, burstiness, repetition patterns and known AI phrases
@@ -285,7 +285,7 @@ def verify_text_origin(text: str) -> dict:
     """
     allowed, msg, tier = check_access(api_key)
     if not allowed:
-        return json.dumps({"error": msg, "upgrade_url": "https://meok.ai/pricing"})
+        return {"error": msg, "upgrade_url": "https://meok.ai/pricing"}
     if not _check_rate_limit():
         return {"error": "Rate limit exceeded. Upgrade to Pro at https://proofof.ai/pricing"}
 
@@ -379,7 +379,7 @@ def verify_text_origin(text: str) -> dict:
 
 
 @mcp.tool()
-def detect_deepfake_image(image_base64: Optional[str] = None, image_path: Optional[str] = None) -> dict:
+def detect_deepfake_image(image_base64: Optional[str] = None, image_path: Optional[str] = None, api_key: str = "") -> dict:
     """Check image metadata for AI generation signatures.
 
     Performs lightweight metadata-based analysis (EXIF, PNG chunks, compression
@@ -395,7 +395,7 @@ def detect_deepfake_image(image_base64: Optional[str] = None, image_path: Option
     """
     allowed, msg, tier = check_access(api_key)
     if not allowed:
-        return json.dumps({"error": msg, "upgrade_url": "https://meok.ai/pricing"})
+        return {"error": msg, "upgrade_url": "https://meok.ai/pricing"}
     if not _check_rate_limit():
         return {"error": "Rate limit exceeded. Upgrade to Pro at https://proofof.ai/pricing"}
 
@@ -499,7 +499,7 @@ def generate_content_certificate(
     content: str,
     content_type: str = "text",
     author: Optional[str] = None,
-    purpose: Optional[str] = None) -> dict:
+    purpose: Optional[str] = None, api_key: str = "") -> dict:
     """Create a signed verification certificate for content.
 
     Generates a unique certificate that records the content hash, timestamp,
@@ -516,7 +516,7 @@ def generate_content_certificate(
     """
     allowed, msg, tier = check_access(api_key)
     if not allowed:
-        return json.dumps({"error": msg, "upgrade_url": "https://meok.ai/pricing"})
+        return {"error": msg, "upgrade_url": "https://meok.ai/pricing"}
     if not _check_rate_limit():
         return {"error": "Rate limit exceeded. Upgrade to Pro at https://proofof.ai/pricing"}
 
@@ -560,7 +560,7 @@ def generate_content_certificate(
 
 
 @mcp.tool()
-def verify_certificate(certificate_id: str) -> dict:
+def verify_certificate(certificate_id: str, api_key: str = "") -> dict:
     """Verify a previously generated content certificate by ID.
 
     Args:
@@ -571,7 +571,7 @@ def verify_certificate(certificate_id: str) -> dict:
     """
     allowed, msg, tier = check_access(api_key)
     if not allowed:
-        return json.dumps({"error": msg, "upgrade_url": "https://meok.ai/pricing"})
+        return {"error": msg, "upgrade_url": "https://meok.ai/pricing"}
     if not _check_rate_limit():
         return {"error": "Rate limit exceeded."}
 
@@ -598,7 +598,7 @@ def verify_certificate(certificate_id: str) -> dict:
 
 
 @mcp.tool()
-def check_provenance(file_path: Optional[str] = None, file_base64: Optional[str] = None) -> dict:
+def check_provenance(file_path: Optional[str] = None, file_base64: Optional[str] = None, api_key: str = "") -> dict:
     """Check C2PA / Content Credentials metadata in files.
 
     C2PA (Coalition for Content Provenance and Authenticity) embeds
@@ -614,7 +614,7 @@ def check_provenance(file_path: Optional[str] = None, file_base64: Optional[str]
     """
     allowed, msg, tier = check_access(api_key)
     if not allowed:
-        return json.dumps({"error": msg, "upgrade_url": "https://meok.ai/pricing"})
+        return {"error": msg, "upgrade_url": "https://meok.ai/pricing"}
     if not _check_rate_limit():
         return {"error": "Rate limit exceeded."}
 
@@ -688,7 +688,7 @@ def check_provenance(file_path: Optional[str] = None, file_base64: Optional[str]
 
 
 @mcp.tool()
-def get_verification_stats() -> dict:
+def get_verification_stats(api_key: str = "") -> dict:
     """Return statistics on verifications performed by this server instance.
 
     Returns:
@@ -696,7 +696,7 @@ def get_verification_stats() -> dict:
     """
     allowed, msg, tier = check_access(api_key)
     if not allowed:
-        return json.dumps({"error": msg, "upgrade_url": "https://meok.ai/pricing"})
+        return {"error": msg, "upgrade_url": "https://meok.ai/pricing"}
     return {
         **_stats,
         "current_tier": _tier,

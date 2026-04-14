@@ -1,10 +1,53 @@
 name: proofof-ai-mcp
-description: "MEOK AI Labs — Built by MEOK AI Labs | https://proofof.ai"
-vendor: MEOK AI Labs
-homepage: https://meok.ai
-repository: https://github.com/CSOAI-ORG/proofof-ai-mcp
-license: MIT
-categories: [Security, Verification]
-tags: [proof-of-work, verification, authentication, digital-proof, attestation]
-runtime: python
-entrypoint: server.py
+description: "> **By [MEOK AI Labs](https://meok.ai)** \u2014 Sovereign AI tools for\
+  \ everyone."
+version: 1.0.0
+tools:
+- name: verify_text_origin
+  description: Analyze text for AI-generated patterns.
+  parameters:
+  - name: text
+    type: string
+    required: true
+- name: detect_deepfake_image
+  description: Check image metadata for AI generation signatures.
+  parameters:
+  - name: image_base64
+    type: string
+    required: false
+  - name: image_path
+    type: string
+    required: false
+- name: generate_content_certificate
+  description: Create a signed verification certificate for content.
+  parameters:
+  - name: content
+    type: string
+    required: true
+  - name: content_type
+    type: string
+    required: false
+  - name: author
+    type: string
+    required: false
+  - name: purpose
+    type: string
+    required: false
+- name: verify_certificate
+  description: Verify a previously generated content certificate by ID.
+  parameters:
+  - name: certificate_id
+    type: string
+    required: true
+- name: check_provenance
+  description: Check C2PA / Content Credentials metadata in files.
+  parameters:
+  - name: file_path
+    type: string
+    required: false
+  - name: file_base64
+    type: string
+    required: false
+- name: get_verification_stats
+  description: Return statistics on verifications performed by this server instance.
+  parameters: []
