@@ -38,6 +38,9 @@ def _validate_file_path(file_path: str) -> str | None:
 
 # ── Authentication ──────────────────────────────────────────────
 import os as _os
+import sys, os
+sys.path.insert(0, os.path.expanduser("~/clawd/meok-labs-engine/shared"))
+from auth_middleware import check_access
 _MEOK_API_KEY = _os.environ.get("MEOK_API_KEY", "")
 
 def _check_auth(api_key: str = "") -> str | None:
@@ -280,6 +283,9 @@ def verify_text_origin(text: str) -> dict:
     Returns:
         Confidence score, classification, and detailed analysis breakdown.
     """
+    allowed, msg, tier = check_access(api_key)
+    if not allowed:
+        return json.dumps({"error": msg, "upgrade_url": "https://meok.ai/pricing"})
     if not _check_rate_limit():
         return {"error": "Rate limit exceeded. Upgrade to Pro at https://proofof.ai/pricing"}
 
@@ -387,6 +393,9 @@ def detect_deepfake_image(image_base64: Optional[str] = None, image_path: Option
     Returns:
         Detection results with metadata findings and risk assessment.
     """
+    allowed, msg, tier = check_access(api_key)
+    if not allowed:
+        return json.dumps({"error": msg, "upgrade_url": "https://meok.ai/pricing"})
     if not _check_rate_limit():
         return {"error": "Rate limit exceeded. Upgrade to Pro at https://proofof.ai/pricing"}
 
@@ -505,6 +514,9 @@ def generate_content_certificate(
     Returns:
         Certificate with unique ID, hash, timestamp, and analysis.
     """
+    allowed, msg, tier = check_access(api_key)
+    if not allowed:
+        return json.dumps({"error": msg, "upgrade_url": "https://meok.ai/pricing"})
     if not _check_rate_limit():
         return {"error": "Rate limit exceeded. Upgrade to Pro at https://proofof.ai/pricing"}
 
@@ -557,6 +569,9 @@ def verify_certificate(certificate_id: str) -> dict:
     Returns:
         Certificate details if valid, or error if not found.
     """
+    allowed, msg, tier = check_access(api_key)
+    if not allowed:
+        return json.dumps({"error": msg, "upgrade_url": "https://meok.ai/pricing"})
     if not _check_rate_limit():
         return {"error": "Rate limit exceeded."}
 
@@ -597,6 +612,9 @@ def check_provenance(file_path: Optional[str] = None, file_base64: Optional[str]
     Returns:
         Provenance information if C2PA data is found.
     """
+    allowed, msg, tier = check_access(api_key)
+    if not allowed:
+        return json.dumps({"error": msg, "upgrade_url": "https://meok.ai/pricing"})
     if not _check_rate_limit():
         return {"error": "Rate limit exceeded."}
 
@@ -676,6 +694,9 @@ def get_verification_stats() -> dict:
     Returns:
         Counts of verifications, certificates, and uptime info.
     """
+    allowed, msg, tier = check_access(api_key)
+    if not allowed:
+        return json.dumps({"error": msg, "upgrade_url": "https://meok.ai/pricing"})
     return {
         **_stats,
         "current_tier": _tier,
