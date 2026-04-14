@@ -36,10 +36,7 @@ def _validate_file_path(file_path: str) -> str | None:
 
 
 mcp = FastMCP(
-    "proofof-ai",
-    version="1.0.0",
-    description="Digital content verification - AI detection, deepfake analysis, content certificates",
-)
+    "proofof-ai")
 
 # ---------------------------------------------------------------------------
 # Rate limiting
@@ -481,8 +478,7 @@ def generate_content_certificate(
     content: str,
     content_type: str = "text",
     author: Optional[str] = None,
-    purpose: Optional[str] = None,
-) -> dict:
+    purpose: Optional[str] = None) -> dict:
     """Create a signed verification certificate for content.
 
     Generates a unique certificate that records the content hash, timestamp,
