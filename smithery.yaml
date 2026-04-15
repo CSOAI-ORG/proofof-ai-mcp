@@ -1,5 +1,5 @@
 name: proofof-ai-mcp
-description: MEOK AI Labs MCP Server
+description: "\x01"
 version: 1.0.0
 tools:
 - name: verify_text_origin
