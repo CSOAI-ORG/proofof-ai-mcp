@@ -1,5 +1,6 @@
 name: proofof-ai-mcp
-description: "\x01"
+description: 'Proofof Ai tools for AI agents. Capabilities: verify text origin, detect
+  deepfake image, generate content certificate. Built by MEOK AI Labs.'
 version: 1.0.0
 tools:
 - name: verify_text_origin

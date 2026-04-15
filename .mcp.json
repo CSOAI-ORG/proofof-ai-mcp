@@ -1,6 +1,6 @@
 {
   "name": "proofof-ai-mcp",
-  "description": "> **By [MEOK AI Labs](https://meok.ai)** \u2014 \u0001",
+  "description": "Proofof Ai tools for AI agents. Capabilities: verify text origin, detect deepfake image, generate content certificate. Built by MEOK AI Labs.",
   "version": "1.0.0",
   "tools": [
     {
