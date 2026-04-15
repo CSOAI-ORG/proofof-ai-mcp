@@ -25,12 +25,10 @@
         "type": "object",
         "properties": {
           "image_base64": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "image_path": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         },
         "required": []
@@ -49,12 +47,10 @@
             "type": "string"
           },
           "author": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "purpose": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         },
         "required": [
@@ -84,12 +80,10 @@
         "type": "object",
         "properties": {
           "file_path": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "file_base64": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         },
         "required": []

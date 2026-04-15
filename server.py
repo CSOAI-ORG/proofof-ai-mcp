@@ -50,8 +50,7 @@ def _check_auth(api_key: str = "") -> str | None:
     return None
 
 
-mcp = FastMCP(
-    "proofof-ai")
+mcp = FastMCP("proofof-ai", instructions="")
 
 # ---------------------------------------------------------------------------
 # Rate limiting

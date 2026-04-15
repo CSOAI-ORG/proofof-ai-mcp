@@ -1,6 +1,5 @@
 name: proofof-ai-mcp
-description: "> **By [MEOK AI Labs](https://meok.ai)** \u2014 Sovereign AI tools for\
-  \ everyone."
+description: MEOK AI Labs MCP Server
 version: 1.0.0
 tools:
 - name: verify_text_origin
