@@ -56,4 +56,15 @@ python server.py
 This is one of 255+ MCP servers by MEOK AI Labs. Browse all at [meok.ai](https://meok.ai) or [GitHub](https://github.com/CSOAI-ORG).
 
 ---
-**MEOK AI Labs** | [meok.ai](https://meok.ai) | nicholas@meok.ai | United Kingdom
+
+## 🏢 Enterprise & Pro Licensing
+
+| Plan | Price | Link |
+|------|-------|------|
+| **ProofOf.AI MCP** | £19/mo | [Subscribe](https://buy.stripe.com/bJe14p4O85km0ZT9mE8k801) |
+| **Core MCP Pack** | £49/mo | [Subscribe](https://buy.stripe.com/4gM4gB2G05kmeQJ42k8k805) |
+
+> Part of [MEOK AI Labs](https://meok.ai) — 208+ MCP servers.
+
+---
+**MEOK AI Labs** | [meok.ai](https://meok.ai) | [csoai.org](https://csoai.org) | nicholas@meok.ai
