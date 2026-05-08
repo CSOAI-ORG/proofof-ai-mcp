@@ -1,45 +1,64 @@
-[![proofof-ai-mcp MCP server](https://glama.ai/mcp/servers/CSOAI-ORG/proofof-ai-mcp/badges/score.svg)](https://glama.ai/mcp/servers/CSOAI-ORG/proofof-ai-mcp)
-[![MCP Registry](https://img.shields.io/badge/MCP_Registry-Published-green)](https://registry.modelcontextprotocol.io)
-[![PyPI](https://img.shields.io/pypi/v/proofof-ai-mcp)](https://pypi.org/project/proofof-ai-mcp/)
-
-[![proofof-ai-mcp MCP server](https://glama.ai/mcp/servers/CSOAI-ORG/proofof-ai-mcp/badges/card.svg)](https://glama.ai/mcp/servers/CSOAI-ORG/proofof-ai-mcp)
-
 <div align="center">
 
-[![GitHub stars](https://img.shields.io/github/stars/CSOAI-ORG/proofof-ai-mcp)](https://github.com/CSOAI-ORG/proofof-ai-mcp/stargazers)
+# Proofof Ai MCP
 
-# uproofofU aiU mcp
+**ProofOf.AI MCP Server - Digital Content Verification**
 
-**Digital content verification for the AI era. Detect AI-generated text, check images for deepfake signatures, generate signed content certificates, verify provenance via C2PA/Content Credentials, and track verification statistics.**
-
-[![npm version](https://img.shields.io/npm/v/@meok-ai/proofof-ai-mcp)](https://www.npmjs.com/package/@meok-ai/proofof-ai-mcp)
+[![PyPI](https://img.shields.io/pypi/v/meok-proofof-ai-mcp)](https://pypi.org/project/meok-proofof-ai-mcp/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![MEOK AI Labs](https://img.shields.io/badge/MEOK_AI_Labs-255+_servers-purple)](https://meok.ai)
-
-[Installation](#installation) · [Docs](https://csoai.org) · [Report Bug](https://github.com/CSOAI-ORG/proofof-ai-mcp/issues)
+[![MEOK AI Labs](https://img.shields.io/badge/MEOK_AI_Labs-MCP_Server-purple)](https://meok.ai)
 
 </div>
 
----
+## Overview
+
+ProofOf.AI MCP Server - Digital Content Verification
+Built by MEOK AI Labs | https://proofof.ai
+
+Provides AI content detection, deepfake metadata analysis,
+content certificates, and C2PA provenance checking.
+
+## Tools
+
+| Tool | Description |
+|------|-------------|
+| `verify_text_origin` | Analyze text for AI-generated patterns. |
+| `detect_deepfake_image` | Check image metadata for AI generation signatures. |
+| `generate_content_certificate` | Create a signed verification certificate for content. |
+| `verify_certificate` | Verify a previously generated content certificate by ID. |
+| `check_provenance` | Check C2PA / Content Credentials metadata in files. |
+| `get_verification_stats` | Return statistics on verifications performed by this server instance. |
 
 ## Installation
 
 ```bash
-pip install proofof-ai-mcp
-# or
-npm install -g @meok-ai/proofof-ai-mcp
+pip install meok-proofof-ai-mcp
 ```
 
-## Quick Start
+## Usage with Claude Desktop
 
-See the project repository for full documentation and examples.
+Add to your Claude Desktop MCP config (`claude_desktop_config.json`):
 
-## Enterprise Support
+```json
+{
+  "mcpServers": {
+    "proofof-ai": {
+      "command": "python",
+      "args": ["-m", "meok_proofof_ai_mcp.server"]
+    }
+  }
+}
+```
 
-- 📧 nicholas@csoai.org
-- 🌐 [CSOAI.org](https://csoai.org)
+## Usage with FastMCP
+
+```python
+from mcp.server.fastmcp import FastMCP
+
+# This server exposes 6 tool(s) via MCP
+# See server.py for full implementation
+```
 
 ## License
 
-MIT © [CSOAI](https://csoai.org)
-<!-- mcp-name: io.github.CSOAI-ORG/proofof-ai-mcp -->
+MIT © [MEOK AI Labs](https://meok.ai)
