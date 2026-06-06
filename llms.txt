@@ -1,0 +1,33 @@
+# Proofof Ai MCP
+
+> **⚖️ Built by [MEOK AI Labs](https://meok.ai) / [CSOAI](https://csoai.org).** Need this applied to _your_ system fast? Book a 30-min Founder Office Hour (£29) → **https://meok.ai/work** · Full governance platform → **https://meok.ai**
+
+`proofof-ai-mcp` is a Model Context Protocol (MCP) server by MEOK AI Labs.
+
+## Install
+
+```bash
+pip install proofof-ai-mcp
+```
+
+Or run without installing:
+
+```bash
+uvx proofof-ai-mcp
+```
+
+## Tools
+
+- `verify_text_origin` — Analyze text for AI-generated patterns.
+- `detect_deepfake_image` — Check image metadata for AI generation signatures.
+- `generate_content_certificate` — Create a signed verification certificate for content.
+- `verify_certificate` — Verify a previously generated content certificate by ID.
+- `check_provenance` — Check C2PA / Content Credentials metadata in files.
+- `get_verification_stats` — Return statistics on verifications performed by this server instance.
+
+## Links
+
+- Source: https://github.com/CSOAI-ORG/proofof-ai-mcp
+- PyPI: https://pypi.org/project/proofof-ai-mcp/
+- MEOK AI Labs: https://meok.ai
+- Council of AI: https://councilof.ai
