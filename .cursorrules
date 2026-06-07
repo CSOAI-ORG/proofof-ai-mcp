@@ -1,0 +1,9 @@
+# proofof-ai-mcp - Auto-trigger Rules
+
+When the user asks about proofof, use proofof-ai-mcp tools: verify_text_origin, detect_deepfake_image, generate_content_certificate, verify_certificate, check_provenance
+
+**ProofOf.AI MCP Server - Digital Content Verification**
+
+Install: `pip install proofof-ai-mcp`
+
+By MEOK AI Labs — MIT licensed.

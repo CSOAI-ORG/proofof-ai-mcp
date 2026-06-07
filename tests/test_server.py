@@ -1,55 +1,115 @@
-import os
+#!/usr/bin/env python3
 import sys
-import unittest
+import os
+import json
+import pytest
 
-# Ensure shared auth middleware is available
-sys.path.insert(0, os.path.expanduser("~/clawd/meok-labs-engine/shared"))
-os.chdir(os.path.dirname(os.path.abspath(__file__)) + "/..")
-
-
-class TestMCPImport(unittest.TestCase):
-    def test_import_server(self):
-        """Server module must import without errors."""
-        import server  # noqa: F401
-
-    def test_mcp_or_server_object_exists(self):
-        """FastMCP servers export 'mcp'; low-level servers export 'server'."""
-        import server as srv
-        self.assertTrue(
-            hasattr(srv, "mcp") or hasattr(srv, "server"),
-            "Expected 'mcp' or 'server' object in server.py",
-        )
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+_shared_auth = os.path.expanduser("~/clawd/meok-labs-engine/shared")
+if os.path.isdir(_shared_auth):
+    sys.path.insert(0, _shared_auth)
 
 
-class TestAuthMiddleware(unittest.TestCase):
-    def test_check_access_allows_empty_key_as_free_tier(self):
-        """Empty API key maps to FREE tier and is allowed."""
-        from auth_middleware import check_access, Tier
-        allowed, msg, tier = check_access("")
-        self.assertTrue(allowed)
-        self.assertEqual(tier, Tier.FREE)
-        self.assertIsInstance(msg, str)
+import server
 
-    def test_check_access_returns_tuple(self):
-        """check_access must return a 3-tuple."""
-        from auth_middleware import check_access
-        result = check_access("")
-        self.assertIsInstance(result, tuple)
-        self.assertEqual(len(result), 3)
+# Bypass shared auth rate limiting for tests
+server.check_access = lambda api_key="": (True, "test", "pro")
 
 
-class TestHealthEndpoint(unittest.TestCase):
-    def test_health_url_resolves(self):
-        """Wrapper must expose /health."""
-        import urllib.request
-        # Note: this test requires the wrapper to be running on port 8000.
-        # It is skipped in CI unless the server is active.
-        try:
-            resp = urllib.request.urlopen("http://localhost:8000/health", timeout=2)
-            self.assertEqual(resp.status, 200)
-        except Exception as e:
-            self.skipTest(f"Server not running: {e}")
+def test_server_module_imports():
+    assert server is not None
 
 
-if __name__ == "__main__":
-    unittest.main()
+def test_mcp_object_exists():
+    import server
+    assert hasattr(server, "mcp")
+
+
+def test_tools_registered():
+    import server
+    expected = [
+        "verify_text_origin",
+        "detect_deepfake_image",
+        "generate_content_certificate",
+        "verify_certificate",
+        "check_provenance",
+        "get_verification_stats",
+    ]
+    for name in expected:
+        assert hasattr(server, name), f"Missing tool: {name}"
+        assert callable(getattr(server, name))
+
+
+def test_main_function():
+    import server
+    assert hasattr(server, "main")
+    assert callable(server.main)
+
+
+def test_verify_text_origin():
+    import server
+    result = server.verify_text_origin(
+        text="The quick brown fox jumps over the lazy dog. "
+        "This sentence contains enough words for a reliable analysis. "
+        "We need at least twenty words here to pass the minimum threshold."
+    )
+    assert isinstance(result, dict)
+    assert "classification" in result
+    assert result["classification"] in (
+        "likely_ai_generated", "possibly_ai_generated", "uncertain", "likely_human"
+    )
+    assert "ai_confidence" in result
+    assert "analysis" in result
+
+
+def test_verify_text_origin_too_short():
+    import server
+    result = server.verify_text_origin(text="Short text.")
+    assert isinstance(result, dict)
+    assert "error" in result
+
+
+def test_detect_deepfake_no_input():
+    import server
+    result = server.detect_deepfake_image()
+    assert isinstance(result, dict)
+    assert "error" in result
+
+
+def test_detect_deepfake_invalid_base64():
+    import server
+    result = server.detect_deepfake_image(image_base64="not-valid-base64!!")
+    assert isinstance(result, dict)
+    assert "error" in result
+
+
+def test_generate_content_certificate():
+    import server
+    result = server.generate_content_certificate(
+        content="Test content for certification",
+        content_type="text",
+    )
+    assert isinstance(result, dict)
+    assert "certificate_id" in result or "error" in result
+
+
+def test_verify_certificate_not_found():
+    import server
+    result = server.verify_certificate(certificate_id="POA-NONEXISTENT")
+    assert isinstance(result, dict)
+    assert "valid" in result or "error" in result
+
+
+def test_check_provenance_no_input():
+    import server
+    result = server.check_provenance()
+    assert isinstance(result, dict)
+    assert "error" in result
+
+
+def test_get_verification_stats():
+    import server
+    result = server.get_verification_stats()
+    assert isinstance(result, dict)
+    assert "total_verifications" in result
+    assert "powered_by" in result

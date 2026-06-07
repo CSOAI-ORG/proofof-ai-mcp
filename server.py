@@ -39,8 +39,14 @@ def _validate_file_path(file_path: str) -> str | None:
 # ── Authentication ──────────────────────────────────────────────
 import os as _os
 import sys, os
-sys.path.insert(0, os.path.expanduser("~/clawd/meok-labs-engine/shared"))
-from auth_middleware import check_access
+try:
+    from meok_auth import check_access
+except ImportError:
+    try:
+        from auth_middleware import check_access
+    except ImportError:
+        def check_access(api_key: str = "") -> tuple:
+            return (True, "Open access", "community")
 _MEOK_API_KEY = _os.environ.get("MEOK_API_KEY", "")
 
 def _check_auth(api_key: str = "") -> str | None:
@@ -312,7 +318,7 @@ def verify_text_origin(text: str, api_key: str = "") -> dict:
     """
     allowed, msg, tier = check_access(api_key)
     if not allowed:
-        return {"error": msg, "upgrade_url": "https://meok.ai/pricing"}
+        return {"error": msg, "upgrade_url": "https://councilof.ai"}
     if not _check_rate_limit():
         return {"error": "Rate limit exceeded. Upgrade to Pro at https://proofof.ai/pricing"}
 
@@ -450,7 +456,7 @@ def detect_deepfake_image(image_base64: Optional[str] = None, image_path: Option
     """
     allowed, msg, tier = check_access(api_key)
     if not allowed:
-        return {"error": msg, "upgrade_url": "https://meok.ai/pricing"}
+        return {"error": msg, "upgrade_url": "https://councilof.ai"}
     if not _check_rate_limit():
         return {"error": "Rate limit exceeded. Upgrade to Pro at https://proofof.ai/pricing"}
 
@@ -585,7 +591,7 @@ def generate_content_certificate(
     """
     allowed, msg, tier = check_access(api_key)
     if not allowed:
-        return {"error": msg, "upgrade_url": "https://meok.ai/pricing"}
+        return {"error": msg, "upgrade_url": "https://councilof.ai"}
     if not _check_rate_limit():
         return {"error": "Rate limit exceeded. Upgrade to Pro at https://proofof.ai/pricing"}
 
@@ -668,7 +674,7 @@ def verify_certificate(certificate_id: str, api_key: str = "") -> dict:
     """
     allowed, msg, tier = check_access(api_key)
     if not allowed:
-        return {"error": msg, "upgrade_url": "https://meok.ai/pricing"}
+        return {"error": msg, "upgrade_url": "https://councilof.ai"}
     if not _check_rate_limit():
         return {"error": "Rate limit exceeded."}
 
@@ -740,7 +746,7 @@ def check_provenance(file_path: Optional[str] = None, file_base64: Optional[str]
     """
     allowed, msg, tier = check_access(api_key)
     if not allowed:
-        return {"error": msg, "upgrade_url": "https://meok.ai/pricing"}
+        return {"error": msg, "upgrade_url": "https://councilof.ai"}
     if not _check_rate_limit():
         return {"error": "Rate limit exceeded."}
 
@@ -851,7 +857,7 @@ def get_verification_stats(api_key: str = "") -> dict:
     """
     allowed, msg, tier = check_access(api_key)
     if not allowed:
-        return {"error": msg, "upgrade_url": "https://meok.ai/pricing"}
+        return {"error": msg, "upgrade_url": "https://councilof.ai"}
     return {
         **_stats,
         "current_tier": _tier,
@@ -862,5 +868,8 @@ def get_verification_stats(api_key: str = "") -> dict:
     }
 
 
-if __name__ == "__main__":
+def main():
     mcp.run()
+
+if __name__ == '__main__':
+    main()

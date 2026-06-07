@@ -8,6 +8,15 @@
 [![PyPI](https://img.shields.io/badge/PyPI-Install-3775a9)](https://pypi.org/project/proofof_ai_mcp/)
 
 > AI content verification & deepfake detection MCP — media forensics, synthetic media detection, pr...
+<div align="center">
+
+# ProofOf AI MCP
+
+**AI Content Verification & Authenticity — Detect Deepfakes, Verify Origins, Certify Content**
+
+[![MCP](https://img.shields.io/badge/MCP-Server-blue)](https://github.com/CSOAI-ORG)
+[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
+</div>
 
 AI content verification & deepfake detection MCP — media forensics, synthetic media detection, provenance chains. MIT.
 
@@ -78,3 +87,87 @@ MIT © [CSOAI-ORG](https://github.com/CSOAI-ORG)
 <p align="center">
   <sub>Built with 💜 by <a href="https://meok.ai">MEOK AI Labs</a> · UK Companies House 16939677</sub>
 </p>
+AI-powered content verification for the age of synthetic media. Detect AI-generated text, identify deepfake images, verify content origins, and generate verifiable content certificates with C2PA-compliant provenance chains.
+
+## Tools
+
+| Tool | Description | Parameters |
+|------|-------------|------------|
+| `verify_text_origin` | Check if text was AI-generated | `text` (str, required) |
+| `detect_deepfake_image` | Analyze image for AI generation artifacts | `image_url` (str, required) |
+| `generate_content_certificate` | Create a verifiable content certificate | `content_hash`, `author`, `timestamp` |
+| `verify_certificate` | Verify a content certificate's authenticity | `certificate_id` (str, required) |
+| `provenance_chain` | Trace the full provenance chain of content | `content_id` (str, required) |
+| `check_manipulation` | Detect signs of manipulation in media | `media_url` (str, required) |
+
+## Installation
+
+```bash
+pip install mcp
+```
+
+### Claude Desktop
+```json
+{
+  "mcpServers": {
+    "proofof-ai": {
+      "command": "python",
+      "args": ["path/to/server.py"]
+    }
+  }
+}
+```
+
+### Cursor / VS Code / Windsurf
+```json
+{
+  "mcpServers": {
+    "proofof-ai": {
+      "command": "python",
+      "args": ["path/to/server.py"]
+    }
+  }
+}
+```
+
+## Usage Examples
+
+### Verify text origin
+```json
+{
+  "text": "The quick brown fox jumps over the lazy dog. Studies indicate that AI-generated text often exhibits specific statistical patterns in word choice and sentence structure."
+}
+```
+
+### Detect deepfake image
+```json
+{
+  "image_url": "https://example.com/suspicious-image.jpg"
+}
+```
+
+## Pricing
+
+- **Free:** 10 verifications/day
+- **Pro:** $99/mo — 500 verifications + certificates
+- **Enterprise:** $499/mo — API access + custom models
+
+---
+
+*Built by MEOK AI Labs | [meok.ai](https://meok.ai)*
+
+<!-- BUY-LADDER:START -->
+
+## 💸 Try MEOK in 30 seconds — instant buy ladder
+
+| Tier | Price | What you get | Stripe |
+|---|---|---|---|
+| Smoke test | **£1** | Signed sample MCP-Hardening report + Article 50 PDF | <https://buy.stripe.com/dRmcN75ScdQS7oh1Uc8k90U> |
+| Quick Kit | **£9** | EU AI Act Article 50 implementation guide (C2PA + EU-Icon) | <https://buy.stripe.com/cNi00la8s1460ZT0Q88k90V> |
+| Founder Call | **£29** | 30-min 1-on-1 with the founder | <https://buy.stripe.com/8x228ta8s6oqbExaqI8k90W> |
+
+> Refundable. UK Stripe — VAT-clean. Builds on the 81-MCP MEOK fleet.
+> Verify any signed report at <https://meok.ai/verify>.
+
+<!-- BUY-LADDER:END -->
+

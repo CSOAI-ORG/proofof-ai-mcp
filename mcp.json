@@ -1,0 +1,10 @@
+{
+  "name": "ProofOf AI",
+  "description": "Cryptographic proof of AI output authenticity, provenance, and verification",
+  "vendor": "MEOK AI Labs",
+  "sourceUrl": "https://github.com/CSOAI-ORG/proofof-ai-mcp",
+  "homepage": "https://meok.ai/mcp/proofof-ai-mcp",
+  "license": "MIT",
+  "runtime": "python",
+  "entryPoint": "server.py"
+}

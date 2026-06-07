@@ -1,6 +1,6 @@
 {
   "name": "proofof-ai-mcp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Proofof Ai tools for AI agents. Capabilities: verify text origin, detect deepfake image, generate content certificate. Built by MEOK AI Labs.",
   "main": "server.py",
   "mcp": {

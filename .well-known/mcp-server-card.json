@@ -1,0 +1,6 @@
+{
+  "serverInfo": { "name": "proofof-ai-mcp", "version": "1.0.0" },
+  "tools": [
+    {"name": "verify_text_origin", "description": "MCP tool from MEOK AI Labs"}, {"name": "detect_deepfake_image", "description": "MCP tool from MEOK AI Labs"}, {"name": "generate_content_certificate", "description": "MCP tool from MEOK AI Labs"}, {"name": "verify_certificate", "description": "MCP tool from MEOK AI Labs"}, {"name": "check_provenance", "description": "MCP tool from MEOK AI Labs"}
+  ]
+}

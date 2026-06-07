@@ -1,53 +1,34 @@
 name: proofof-ai-mcp
-description: 'Proofof Ai tools for AI agents. Capabilities: verify text origin, detect
-  deepfake image, generate content certificate. Built by MEOK AI Labs.'
-version: 1.0.0
+description: "Digital content verification and provenance - AI-generated text detection, deepfake image metadata analysis, content certificate generation with HMAC signatures, and C2PA provenance checking"
+version: 1.0.5
+author: MEOK AI Labs
+homepage: https://safetyof.ai
+repository: https://github.com/MEOK-AI-Labs/proofof-ai-mcp
+license: MIT
+categories:
+  - ai-safety
+  - verification
+  - governance
+
 tools:
-- name: verify_text_origin
-  description: Analyze text for AI-generated patterns.
-  parameters:
-  - name: text
-    type: string
-    required: true
-- name: detect_deepfake_image
-  description: Check image metadata for AI generation signatures.
-  parameters:
-  - name: image_base64
-    type: string
-    required: false
-  - name: image_path
-    type: string
-    required: false
-- name: generate_content_certificate
-  description: Create a signed verification certificate for content.
-  parameters:
-  - name: content
-    type: string
-    required: true
-  - name: content_type
-    type: string
-    required: false
-  - name: author
-    type: string
-    required: false
-  - name: purpose
-    type: string
-    required: false
-- name: verify_certificate
-  description: Verify a previously generated content certificate by ID.
-  parameters:
-  - name: certificate_id
-    type: string
-    required: true
-- name: check_provenance
-  description: Check C2PA / Content Credentials metadata in files.
-  parameters:
-  - name: file_path
-    type: string
-    required: false
-  - name: file_base64
-    type: string
-    required: false
-- name: get_verification_stats
-  description: Return statistics on verifications performed by this server instance.
-  parameters: []
+  - name: verify_text_origin
+    description: "Analyze text for AI-generated patterns using perplexity, burstiness, repetition, and AI phrase detection to estimate human vs AI authorship"
+  - name: detect_deepfake_image
+    description: "Check image metadata for AI generation signatures - EXIF analysis, PNG chunk inspection, AI tool markers, and resolution pattern detection"
+  - name: generate_content_certificate
+    description: "Create a signed verification certificate for content with unique ID, SHA-256 hash, timestamp, and verification URL"
+  - name: verify_certificate
+    description: "Verify a previously generated content certificate by ID with integrity check and signature validation"
+  - name: check_provenance
+    description: "Check C2PA and Content Credentials metadata in files for cryptographic provenance verification"
+  - name: get_verification_stats
+    description: "Return statistics on verifications performed by the server instance including text checks, image checks, and certificates"
+
+build:
+  type: python
+  entrypoint: server.py
+  dependencies:
+    - mcp>=1.0.0
+
+runtime:
+  python: ">=3.10"
