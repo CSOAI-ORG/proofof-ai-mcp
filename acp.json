@@ -1,0 +1,24 @@
+{
+  "acpVersion": "0.1",
+  "agent": {
+    "name": "proofof-ai-mcp",
+    "description": "Proofof Ai MCP Server by MEOK AI Labs",
+    "version": "1.0.6",
+    "provider": "MEOK AI Labs",
+    "interfaces": [
+      {
+        "type": "mcp",
+        "transport": "stdio",
+        "package": "proofof-ai-mcp"
+      }
+    ],
+    "capabilities": [
+      "verify_text_origin",
+      "detect_deepfake_image",
+      "generate_content_certificate",
+      "verify_certificate",
+      "check_provenance",
+      "get_verification_stats"
+    ]
+  }
+}

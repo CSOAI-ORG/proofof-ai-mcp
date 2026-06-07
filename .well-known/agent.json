@@ -1,0 +1,77 @@
+{
+  "name": "proofof-ai-mcp",
+  "description": "Proofof Ai MCP Server by MEOK AI Labs",
+  "url": "https://proofof.ai/scorecard/proofof-ai-mcp.html",
+  "version": "1.0.6",
+  "protocolVersion": "0.2.0",
+  "provider": {
+    "organization": "MEOK AI Labs",
+    "url": "https://meok.ai"
+  },
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false
+  },
+  "defaultInputModes": [
+    "text"
+  ],
+  "defaultOutputModes": [
+    "text"
+  ],
+  "skills": [
+    {
+      "id": "verify_text_origin",
+      "name": "Verify Text Origin",
+      "description": "verify_text_origin via proofof-ai-mcp",
+      "tags": [
+        "mcp",
+        "compliance"
+      ]
+    },
+    {
+      "id": "detect_deepfake_image",
+      "name": "Detect Deepfake Image",
+      "description": "detect_deepfake_image via proofof-ai-mcp",
+      "tags": [
+        "mcp",
+        "compliance"
+      ]
+    },
+    {
+      "id": "generate_content_certificate",
+      "name": "Generate Content Certificate",
+      "description": "generate_content_certificate via proofof-ai-mcp",
+      "tags": [
+        "mcp",
+        "compliance"
+      ]
+    },
+    {
+      "id": "verify_certificate",
+      "name": "Verify Certificate",
+      "description": "verify_certificate via proofof-ai-mcp",
+      "tags": [
+        "mcp",
+        "compliance"
+      ]
+    },
+    {
+      "id": "check_provenance",
+      "name": "Check Provenance",
+      "description": "check_provenance via proofof-ai-mcp",
+      "tags": [
+        "mcp",
+        "compliance"
+      ]
+    },
+    {
+      "id": "get_verification_stats",
+      "name": "Get Verification Stats",
+      "description": "get_verification_stats via proofof-ai-mcp",
+      "tags": [
+        "mcp",
+        "compliance"
+      ]
+    }
+  ]
+}
