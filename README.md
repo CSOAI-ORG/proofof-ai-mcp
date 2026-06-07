@@ -1,4 +1,6 @@
 <!-- mcp-name: CSOAI-ORG/proofof-ai-mcp -->
+[![MCP Scorecard: 86/100](https://img.shields.io/badge/proofof.ai-86%2F100-5b21b6)](https://proofof.ai/scorecard/proofof-ai-mcp.html)
+
 # Proofof Ai MCP
 
 > **⚖️ Built by [MEOK AI Labs](https://meok.ai) / [CSOAI](https://csoai.org).** Need this applied to _your_ system fast? Book a 30-min Founder Office Hour (£29) → **https://meok.ai/work** · Full governance platform → **https://meok.ai**
