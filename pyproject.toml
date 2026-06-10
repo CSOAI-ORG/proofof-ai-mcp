@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 [project]
 name = "proofof-ai-mcp"
-version = "1.0.6"
+version = "1.0.8"
 readme = "README.md"
 description = "Proofof Ai tools for AI agents. Capabilities: verify text origin, detect deepfake image, generate content certificate. Built by MEOK AI Labs."
 license = {file = "LICENSE"}
@@ -22,7 +22,7 @@ Homepage = "https://meok.ai"
 Repository = "https://github.com/CSOAI-ORG/proofof-ai-mcp"
 [tool.hatch.build.targets.wheel]
 packages = ["."]
-only-include = ["server.py"]
+only-include = ["auth_middleware.py", "server.py"]
 
 [project.scripts]
 proofof_ai_mcp = "server:main"
