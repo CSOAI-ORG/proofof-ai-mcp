@@ -1,34 +1,52 @@
 name: proofof-ai-mcp
-description: "Digital content verification and provenance - AI-generated text detection, deepfake image metadata analysis, content certificate generation with HMAC signatures, and C2PA provenance checking"
+description: Digital content verification and provenance - AI-generated text detection,
+  deepfake image metadata analysis, content certificate generation with HMAC signatures,
+  and C2PA provenance checking
 version: 1.0.5
 author: MEOK AI Labs
 homepage: https://safetyof.ai
 repository: https://github.com/MEOK-AI-Labs/proofof-ai-mcp
 license: MIT
 categories:
-  - ai-safety
-  - verification
-  - governance
-
+- ai-safety
+- verification
+- governance
 tools:
-  - name: verify_text_origin
-    description: "Analyze text for AI-generated patterns using perplexity, burstiness, repetition, and AI phrase detection to estimate human vs AI authorship"
-  - name: detect_deepfake_image
-    description: "Check image metadata for AI generation signatures - EXIF analysis, PNG chunk inspection, AI tool markers, and resolution pattern detection"
-  - name: generate_content_certificate
-    description: "Create a signed verification certificate for content with unique ID, SHA-256 hash, timestamp, and verification URL"
-  - name: verify_certificate
-    description: "Verify a previously generated content certificate by ID with integrity check and signature validation"
-  - name: check_provenance
-    description: "Check C2PA and Content Credentials metadata in files for cryptographic provenance verification"
-  - name: get_verification_stats
-    description: "Return statistics on verifications performed by the server instance including text checks, image checks, and certificates"
-
+- name: verify_text_origin
+  description: Analyze text for AI-generated patterns using perplexity, burstiness,
+    repetition, and AI phrase detection to estimate human vs AI authorship
+- name: detect_deepfake_image
+  description: Check image metadata for AI generation signatures - EXIF analysis,
+    PNG chunk inspection, AI tool markers, and resolution pattern detection
+- name: generate_content_certificate
+  description: Create a signed verification certificate for content with unique ID,
+    SHA-256 hash, timestamp, and verification URL
+- name: verify_certificate
+  description: Verify a previously generated content certificate by ID with integrity
+    check and signature validation
+- name: check_provenance
+  description: Check C2PA and Content Credentials metadata in files for cryptographic
+    provenance verification
+- name: get_verification_stats
+  description: Return statistics on verifications performed by the server instance
+    including text checks, image checks, and certificates
 build:
   type: python
   entrypoint: server.py
   dependencies:
-    - mcp>=1.0.0
-
+  - mcp>=1.0.0
 runtime:
-  python: ">=3.10"
+  python: '>=3.10'
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    required:
+    - apiKey
+    properties:
+      apiKey:
+        type: string
+        description: Your MEOK API Key
+  commandFunction: "(config) => ({\n  command: 'uvx',\n  args: ['proofof-ai-mcp',\
+    \ '--api-key', config.apiKey],\n  env: {\n    MEOK_API_KEY: config.apiKey\n  }\n\
+    })"
