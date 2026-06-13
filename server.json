@@ -4,9 +4,8 @@
   "version": "1.0.8",
   "description": "Proofof Ai MCP Server by MEOK AI Labs",
   "repository": {
-    "type": "git",
     "url": "https://github.com/CSOAI-ORG/proofof-ai-mcp",
-    "source": "https://github.com/CSOAI-ORG/proofof-ai-mcp"
+    "source": "github"
   },
   "packages": [
     {
