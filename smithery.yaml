@@ -5,7 +5,7 @@ description: Digital content verification and provenance - AI-generated text det
 version: 1.0.5
 author: MEOK AI Labs
 homepage: https://safetyof.ai
-repository: https://github.com/MEOK-AI-Labs/proofof-ai-mcp
+repository: https://github.com/CSOAI-ORG/proofof-ai-mcp
 license: MIT
 categories:
 - ai-safety
