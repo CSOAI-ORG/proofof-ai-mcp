@@ -26,14 +26,32 @@ BLOCKED_PATH_PATTERNS = ["/etc/", "/var/", "/proc/", "/sys/", "/dev/", ".."]
 
 
 def _validate_file_path(file_path: str) -> str | None:
-    """Validate file path against traversal attacks. Returns error message or None."""
+    """Validate a file path for the detection tools. Returns an error message or None.
+
+    Issue #8 (2026-06-12): the previous check was a blacklist of substrings ('/etc/', '..', ...),
+    which is not a boundary — any path outside the list, and any symlink into a listed
+    directory, passed. This is an ALLOWLIST: the resolved real path must live under
+    PROOFOF_ALLOWED_DIR (default: ./uploads, created on first use), must be a regular file,
+    and no path component may be a symlink that escapes that directory. Nothing else is read.
+    """
     import os
-    for pattern in BLOCKED_PATH_PATTERNS:
-        if pattern in file_path:
-            return f"Access denied: path contains blocked pattern '{pattern}'"
-    real = os.path.realpath(file_path)
+    allowed_root = os.path.realpath(os.environ.get("PROOFOF_ALLOWED_DIR", os.path.join(os.getcwd(), "uploads")))
+    os.makedirs(allowed_root, exist_ok=True)
+    if not isinstance(file_path, str) or not file_path or "\x00" in file_path:
+        return "Access denied: invalid path"
+    candidate = file_path if os.path.isabs(file_path) else os.path.join(allowed_root, file_path)
+    real = os.path.realpath(candidate)
+    if os.path.commonpath([allowed_root, real]) != allowed_root:
+        return "Access denied: path is outside the allowed directory"
+    # Walk the components so a symlink inside the allowed dir cannot point outside it.
+    rel = os.path.relpath(real, allowed_root)
+    probe = allowed_root
+    for part in rel.split(os.sep):
+        probe = os.path.join(probe, part)
+        if os.path.islink(probe) and os.path.commonpath([allowed_root, os.path.realpath(probe)]) != allowed_root:
+            return "Access denied: symlink escapes the allowed directory"
     if not os.path.isfile(real):
-        return f"File not found: {file_path}"
+        return f"File not found: {os.path.basename(file_path)}"
     return None
 
 
