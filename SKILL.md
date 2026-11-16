@@ -30,7 +30,7 @@ See the MCP server for available tools.
 
 ## Pricing
 - Free tier: Basic compliance checks
-- Pro £199/mo: Full automation + signed attestations
+- Pro quoted per job: Full automation + signed attestations
 - Enterprise: Contact for custom pricing
 
 ## Links
